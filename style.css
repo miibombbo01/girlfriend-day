@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "Griffith";
+    src: url("assets/fonts/Griffith.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin:0;
     padding:0;
@@ -26,7 +33,7 @@ h1{
 
     color:#8d5b56;
 
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Griffith';
 
     font-size:30px;
 
