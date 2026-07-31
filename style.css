@@ -23,18 +23,21 @@ body{
 }
 
 h1{
-    color:#8d5b56;
-    font-size:48px;
-    font-weight:500;
-    line-height:1.2;
-}
 
-h2{
     color:#8d5b56;
-    font-size:38px;
-    font-weight:400;
-    margin-top:8px;
-    margin-bottom:40px;
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:40px;
+
+    font-weight:350;
+
+    line-height:0.95;
+
+    letter-spacing:.5px;
+
+    margin-bottom:50px;
+
 }
 
 button{
