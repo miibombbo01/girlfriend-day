@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Griffith";
-    src: url("assets/fonts/Griffith.otf") format("opentype");
+    src: url("assets/fonts/Griffiths.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
@@ -33,7 +33,7 @@ h1{
 
     color:#8d5b56;
 
-    font-family:'Griffith', serif;
+    font-family:'Griffiths', serif;
 
     font-size:30px;
 
