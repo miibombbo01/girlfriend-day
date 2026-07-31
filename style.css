@@ -1,12 +1,122 @@
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    background:#fbf4ef;
+    background:#fbf5ef;
+    overflow:hidden;
 
     font-family:Georgia, serif;
+}
+
+.container{
+    position:relative;
+    text-align:center;
+}
+
+h1{
+    color:#8d5b56;
+    font-size:48px;
+    font-weight:500;
+    line-height:1.2;
+}
+
+h2{
+    color:#8d5b56;
+    font-size:38px;
+    font-weight:400;
+    margin-top:8px;
+    margin-bottom:40px;
+}
+
+button{
+
+    width:220px;
+    height:64px;
+
+    border:none;
+    border-radius:999px;
+
+    background:#f8e5e5;
+
+    color:#6b4440;
+
+    font-size:28px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.08),
+    inset 0 2px rgba(255,255,255,.9);
+
+    transition:.25s;
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+.sparkle{
+
+    position:absolute;
+
+    color:#f3b8c4;
+
+    font-size:28px;
+
+    opacity:.8;
+
+}
+
+.sparkle1{
+
+    left:-60px;
+    top:-40px;
+
+}
+
+.sparkle2{
+
+    right:-40px;
+    bottom:120px;
+
+}
+
+.heart{
+
+    position:absolute;
+
+    color:#ef8ea4;
+
+    font-size:34px;
+
+}
+
+.heart1{
+
+    right:-50px;
+    top:-10px;
+
+    transform:rotate(-15deg);
+
+}
+
+.heart2{
+
+    left:-55px;
+    bottom:90px;
+
+    transform:rotate(18deg);
+
 }
