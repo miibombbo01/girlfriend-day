@@ -132,23 +132,31 @@
       fill: #fff;
     }
 
-    /* Password Modal */
-    .modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(90, 64, 58, 0.4);
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 100;
-    }
+    /* Password Modal Fix */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(90, 64, 58, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden; /* Tambahkan ini */
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999; /* Naikkan z-index agar di atas semua layar */
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible; /* Tambahkan ini */
+  pointer-events: auto; /* Memastikan input & tombol bisa diklik */
+}
+
 
     .modal-overlay.active {
       opacity: 1;
@@ -620,10 +628,14 @@
   const fullBarcodeModal = document.getElementById('fullBarcodeModal');
 
   // Lock Click -> Open Modal
-  heartLock.addEventListener('click', () => {
-    passModal.classList.add('active');
+  // Lock Click -> Open Modal
+heartLock.addEventListener('click', (e) => {
+  e.stopPropagation(); // Mencegah pembatalan event klik
+  passModal.classList.add('active');
+  setTimeout(() => {
     passInput.focus();
-  });
+  }, 100);
+});
 
   // Password Verification
   btnSubmitPass.addEventListener('click', checkPassword);
