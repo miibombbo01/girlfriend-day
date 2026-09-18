@@ -218,13 +218,12 @@
       box-shadow: 0 6px 15px rgba(212, 140, 128, 0.3);
     }
 
-    /* Style khusus untuk item Bunga & Daun (PNG + Stroke Putih + Drop Shadow) */
+        /* Style khusus untuk item Bunga & Daun */
     .flower-item {
       position: absolute;
-      width: 55px;
       height: auto;
       cursor: grab;
-      z-index: 30;
+      z-index: 50; /* Naikkan jadi 50 supaya di atas karakter & background */
       transition: transform 0.2s ease;
       filter: drop-shadow(0px 0px 2px #ffffff) 
               drop-shadow(2px 2px 2px #ffffff) 
@@ -534,20 +533,20 @@
   </div>
 
   <!-- SCREEN 2: GARDEN & DRAG GAME -->
-  <div id="screen2" class="screen hidden" style="background: url('1000439482.jpg') no-repeat center center / cover;">
+  <div id="screen2" class="screen hidden" style="background: url('background.png') no-repeat center center / cover;">
     
     <div class="instruction-pill">
       <h2>Rangkai Buket Bunga ♡</h2>
       <p id="taskProgress">Tarik 0/6 Bunga & Daun ke Buket</p>
     </div>
 
-    <!-- Draggable Flowers & Leaves -->
-    <img src="bunga_2.png" class="flower-item" id="flower1" style="bottom: 15px; left: 15px; width: 75px;">
-    <img src="bunga_2.png" class="flower-item" id="flower2" style="bottom: 120px; left: 5px; width: 60px;">
-    <img src="bunga_1.png" class="flower-item" id="flower3" style="bottom: 15px; right: 120px; width: 55px;">
-    <img src="bunga_1.png" class="flower-item" id="flower4" style="bottom: 110px; right: 130px; width: 45px;">
-    <img src="daun.png" class="flower-item" id="leaf1" style="bottom: 10px; left: 155px; width: 40px;">
-    <img src="daun.png" class="flower-item" id="leaf2" style="bottom: 140px; right: 75px; width: 35px;">
+        <!-- Draggable Flowers & Leaves (Ukuran & Posisi Dityesuaikan) -->
+    <img src="bunga_2.png" class="flower-item" id="flower1" style="bottom: 25px; left: 20px; width: 42px;">
+    <img src="bunga_2.png" class="flower-item" id="flower2" style="bottom: 85px; left: 15px; width: 38px;">
+    <img src="bunga_1.png" class="flower-item" id="flower3" style="bottom: 25px; right: 25px; width: 40px;">
+    <img src="bunga_1.png" class="flower-item" id="flower4" style="bottom: 85px; right: 20px; width: 35px;">
+    <img src="daun.png" class="flower-item" id="leaf1" style="bottom: 20px; left: 80px; width: 28px;">
+    <img src="daun.png" class="flower-item" id="leaf2" style="bottom: 20px; right: 85px; width: 28px;">
 
     <!-- Character & Drop Zone Container -->
     <div class="character-container">
