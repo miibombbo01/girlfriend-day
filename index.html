@@ -668,7 +668,7 @@
   <div class="modal-overlay" id="passModal">
     <div class="modal-card">
       <h3>Masukkan Tanggal Jadian</h3>
-      <p>Format: DDMMYY (Contoh: 200924)</p>
+      <p>Format: DDMMYYYY</p>
       <input type="password" id="passInput" class="pass-input" maxlength="8" placeholder="••••••">
       <button class="btn-submit" id="btnSubmitPass">Buka Gerbang ♡</button>
     </div>
@@ -784,19 +784,18 @@
   });
 
   function checkPassword() {
-    const val = passInput.value.trim();
-    if (VALID_PASSWORDS.includes(val)) {
-      passModal.classList.remove('active');
-      screen1.classList.add('hidden');
-      setTimeout(() => {
-        screen2.classList.remove('hidden');
-        initSparkles();
-      }, 600);
-    } else {
-      alert("Tanggal jadian salah, coba ingat-ingat lagi ya ♡");
-      passInput.value = "";
-    }
+  const input = document.getElementById("passInput").value.trim();
+  const errorMsg = document.getElementById("errorMsg");
+  
+  // Kata sandi baru: 20062026 atau variasi format 200626
+  if (input === "20062026" || input === "200626") {
+    document.getElementById("loginScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");
+    startFloatingHearts();
+  } else {
+    errorMsg.innerText = "Sandi salah! Coba tanggal jadian kita 😉";
   }
+}
 
   // DRAG AND DROP MECHANIC
   const flowerItems = document.querySelectorAll('.flower-item');
