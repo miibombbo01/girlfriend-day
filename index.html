@@ -748,7 +748,7 @@
 
 <script>
   // CONFIGURATION
-  const VALID_PASSWORDS = ["200924", "20092024"];
+  const VALID_PASSWORDS = ["20062926"];
   let collectedCount = 0;
   const TOTAL_REQUIRED = 6;
 
@@ -784,20 +784,19 @@
   });
 
   function checkPassword() {
-  const input = document.getElementById("passInput").value.trim();
-  
-  // Memeriksa sandi baru: 20062026 atau format 6 digit 200626
-  if (input === "20062026" || input === "200626") {
-    // Sembunyikan modal password
-    passModal.classList.remove("active");
+    const input = document.getElementById("passInput").value.trim();
     
-    // Sembunyikan Screen 1 (Gate) dan Tampilkan Screen 2 (Garden Game)
-    screen1.classList.add("hidden");
-    screen2.classList.remove("hidden");
-  } else {
-    alert("Sandi salah! Coba tanggal jadian kita 😉");
+    if (VALID_PASSWORDS.includes(input)) {
+      // Sembunyikan modal password
+      passModal.classList.remove('active');
+      
+      // Sembunyikan Screen 1 (Gate) dan Tampilkan Screen 2 (Garden)
+      screen1.classList.add('hidden');
+      screen2.classList.remove('hidden');
+    } else {
+      alert("Sandi salah! Coba tanggal jadian kita 😉");
+    }
   }
-}
 
   // DRAG AND DROP MECHANIC
   const flowerItems = document.querySelectorAll('.flower-item');
