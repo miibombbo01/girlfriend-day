@@ -525,6 +525,21 @@
       transform: translateX(-50%) scale(0.95);
     }
 
+    .mini-envelope {
+  width: 58px;
+  height: 44px;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.mini-envelope-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
     .mini-seal {
       width: 14px;
       height: 14px;
@@ -630,6 +645,190 @@
       margin-bottom: 0;
     }
 
+    
+/* =========================================
+   TAHAP AMPLOP DAN SURAT 3 BULAN
+========================================= */
+
+/* Modal amplop */
+.envelope-modal {
+  background: rgba(65, 45, 48, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Hilangkan kartu amplop lama */
+.envelope-card {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+/* Sembunyikan elemen amplop lama */
+.envelope-card > .wax-seal,
+.envelope-card > .envelope-body,
+.envelope-card > .tap-hint {
+  display: none;
+}
+
+/* Area gambar amplop */
+.envelope-stage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+/* Teks di atas amplop */
+.envelope-instruction {
+  color: #fff;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  animation: envelopeBounce 0.75s both;
+}
+
+/* Gambar amplop */
+.envelope-popup-img {
+  display: block;
+  width: min(72vw, 300px);
+  max-height: 48vh;
+  object-fit: contain;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15));
+  animation: envelopeBounce 0.75s both;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Animasi pop-up bounce */
+@keyframes envelopeBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) translateY(50px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.12) translateY(-10px);
+  }
+  75% {
+    transform: scale(0.94) translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Tahap hadiah */
+.envelope-instruction.gift-hint {
+  color: #fff;
+}
+
+/* Halaman surat */
+.letter-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 500;
+  background: #fff;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 28px 20px 36px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+  text-align: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.letter-screen.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Gambar DANA */
+.letter-dana {
+  display: block;
+  width: min(76vw, 300px);
+  max-height: 38vh;
+  object-fit: contain;
+  margin: 4px auto 24px;
+  flex-shrink: 0;
+  animation: envelopeBounce 0.8s both;
+}
+
+/* Judul surat */
+.letter-title {
+  color: #c65383;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 auto 16px;
+  max-width: 100%;
+}
+
+/* Isi surat */
+.letter-content {
+  width: 100%;
+  max-width: 440px;
+  color: #222;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.8;
+  text-align: center;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.letter-content p {
+  margin: 0 0 14px;
+}
+
+.letter-content .letter-signature {
+  margin-top: 20px;
+}
+
+/* Hilangkan animasi jika pengguna memilih reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .envelope-popup-img,
+  .envelope-instruction,
+  .letter-dana {
+    animation: none;
+  }
+
+  .letter-screen {
+    transition: none;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -707,11 +906,11 @@
       <!-- Gambar Buket Asli -->
       <img src="bouquet.png" class="floating-bouquet" id="grandBouquet" alt="Buket Bunga">
       
-      <!-- Amplop Kecil di Bagian Pita Bunga -->
-      <div class="mini-envelope" id="miniEnvelope">
-        <div class="mini-seal">♥</div>
-      </div>
-    </div>
+     <!-- Amplop Kecil di Bagian Pita Bunga -->
+<div class="mini-envelope" id="miniEnvelope">
+  <img src="amplop_1.png" alt="Amplop hadiah"
+       class="mini-envelope-img">
+</div>
 
     <!-- Teks Tanpa Border -->
     <div class="text-container">
@@ -720,26 +919,96 @@
     </div>
   </div>
 
-  <!-- ENVELOPE MODAL -->
-  <div class="envelope-modal" id="envelopeModal">
-    <div class="envelope-card" id="envelopeCard">
-      
-      <!-- Stempel Hati di Atas -->
-      <div class="wax-seal">♥</div>
-      
-      <div class="envelope-body">
-        <!-- Surat & QRIS DANA (Posisi Awal Mengintip Setengah) -->
-        <div class="letter-paper" id="letterPaper">
-          <img src="Dana.jpg" class="qr-img" alt="QRIS DANA">
-          
-          <!-- Teks Paragraf Ucapan (Awalnya tersembunyi) -->
-          <div class="letter-message hidden-msg" id="letterMessage">
-            <p>
-              Gak terasa ya hubungan kita udah menginjak 3 bulan. Terima kasih ya udah selalu ada, sabar, dan bikin hari-hariku jadi jauh lebih berwarna. Mungkin cuma ini hadiah sederhana yang bisa aku kasih buat kamu, semoga bisa bikin kamu tersenyum hari ini! ♡
-            </p>
-          </div>
-        </div>
-      </div>
+  
+<!-- ENVELOPE MODAL: AMPLOP 1 DAN AMPLOP 2 -->
+<div class="envelope-modal" id="envelopeModal">
+
+  <div class="envelope-card" id="envelopeCard">
+
+    <div class="envelope-stage" id="envelopeStage">
+
+      <p class="envelope-instruction" id="envelopeInstruction">
+        klik amplopnya sayang
+      </p>
+
+      <img
+        src="amplop_1.png"
+        class="envelope-popup-img"
+        id="envelopePopupImg"
+        alt="Amplop pertama"
+      >
+
+    </div>
+  </div>
+</div>
+
+<!-- HALAMAN HADIAH DAN SURAT -->
+<div class="letter-screen" id="letterScreen">
+
+  <img
+    src="Dana.png"
+    class="letter-dana"
+    alt="Hadiah DANA"
+  >
+
+  <h2 class="letter-title">
+    Ga kerasa udah 3 bulan sama kamu
+  </h2>
+
+  <div class="letter-content">
+
+    <p>
+      "Ga ada yang bisa aku ucapin kecuali Thank You &amp;
+      I Love You yang sangat gede kepada My Little Pinses.
+    </p>
+
+    <p>
+      Setelah tiga bulan, aku menyadari bahwa bersama kamu
+      baik ketika senang maupun sedih, lagi good mood dan
+      bad mood pun terasa menyenangkan.
+    </p>
+
+    <p>
+      Di bulan pertama aku udah mikir, kan, kayak, nanti
+      kalo berantem apa kami akan renggang? Ternyata setelah
+      berantem pun perasaan aku ke kamu tetap sama.
+    </p>
+
+    <p>
+      Maaf yaa sayang, sekarang uangnya cuma cukup buat
+      jajan dulu, mwuehuehue. Btw aku persiapin ini
+      3 harian yang.
+    </p>
+
+    <p>
+      Karena wish list sayang banyak, dan sayang udah
+      semangat belajarnya dan juga semangat ulangannya,
+      makanya aku pengen ngasi hadiah spesial ini buat
+      My Little Pinsess yang udah berjuang keras.
+    </p>
+
+    <p>
+      Tenang ya sayang, uang aku tetap ketabung kok,
+      jadi gausah dipikirin. Lagipun aku juga masih ada
+      uang buat jajan. Jadi ga ngerepotin kok, karena
+      uangnya udah aku rencanain jauh-jauh hari.
+    </p>
+
+    <p>
+      Itu aja sayangku, cintaku, my pinsess.
+      I hope you like it
+    </p>
+
+    <p class="letter-signature">
+      From your smart sexy handsome bf, [kiss]
+    </p>
+
+    <p>
+      Kali ini bukan template, yang. Mwehehe, bikin dari nol. "
+    </p>
+
+  </div>
+</div>
 
       <p class="tap-hint" id="tapHint">ketuk surat</p>
     </div>
@@ -897,22 +1166,73 @@
     finalOverlay.classList.add('active');
   }
 
-    const miniEnvelope = document.getElementById('miniEnvelope');
-  const letterPaper = document.getElementById('letterPaper');
-  const letterMessage = document.getElementById('letterMessage');
-  const tapHint = document.getElementById('tapHint');
+  
+const miniEnvelope = document.getElementById('miniEnvelope');
+const envelopePopupImg = document.getElementById('envelopePopupImg');
+const envelopeInstruction = document.getElementById('envelopeInstruction');
+const letterScreen = document.getElementById('letterScreen');
 
-  // 1. Ketuk amplop mini di pita bunga -> Buka Modal Amplop Utama
-  miniEnvelope.addEventListener('click', () => {
-    envelopeModal.classList.add('active');
-  });
+let envelopeStage = 1;
 
-  // 2. Ketuk surat/QR -> QR Keluar Penuh & Paragraf Ucapan Tampil
-  letterPaper.addEventListener('click', () => {
-    letterPaper.classList.add('extracted');
-    letterMessage.classList.remove('hidden-msg');
-    tapHint.style.display = 'none'; // Sembunyikan petunjuk "ketuk surat"
+// Klik amplop kecil pada buket
+miniEnvelope.addEventListener('click', () => {
+  envelopeStage = 1;
+
+  envelopePopupImg.src = 'amplop_1.png';
+  envelopePopupImg.alt = 'Amplop pertama';
+
+  envelopeInstruction.textContent = 'klik amplopnya sayang';
+  envelopeInstruction.classList.remove('gift-hint');
+
+  // Restart animasi bounce
+  envelopePopupImg.style.animation = 'none';
+  envelopeInstruction.style.animation = 'none';
+
+  envelopeModal.classList.add('active');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      envelopePopupImg.style.animation = '';
+      envelopeInstruction.style.animation = '';
+    });
   });
+});
+
+// Klik gambar amplop di tengah layar
+envelopePopupImg.addEventListener('click', () => {
+
+  // Tahap 1: Amplop pertama menjadi amplop kedua
+  if (envelopeStage === 1) {
+    envelopeStage = 2;
+
+    envelopePopupImg.src = 'amplop_2.png';
+    envelopePopupImg.alt = 'Amplop kedua';
+    envelopeInstruction.textContent = 'klik hadiahnya sayang';
+
+    // Restart animasi bounce
+    envelopePopupImg.style.animation = 'none';
+    envelopeInstruction.style.animation = 'none';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        envelopePopupImg.style.animation = '';
+        envelopeInstruction.style.animation = '';
+      });
+    });
+
+  }
+
+  // Tahap 2: Amplop kedua membuka hadiah
+  else if (envelopeStage === 2) {
+
+    envelopeStage = 3;
+
+    // Fade keluar dari halaman amplop
+    envelopeModal.classList.remove('active');
+    // Tampilkan halaman putih dan surat
+    letterScreen.classList.add('active');
+  }
+});
 
   function initSparkles() {
     const app = document.getElementById('app');
