@@ -509,8 +509,8 @@
   left: 50%;
   transform: translateX(-50%);
 
-  width: 90px;
-  height: 65px;
+  width: 130px;
+  height: 95px;
 
   background: transparent;
   box-shadow: none;
@@ -1043,35 +1043,48 @@
   const fullBarcodeModal = document.getElementById('fullBarcodeModal');
 
   // Lock Click -> Open Modal
-  // Lock Click -> Open Modal
-  heartLock.addEventListener('click', (e) => {
-    e.stopPropagation();
-    passModal.classList.add('active');
-    setTimeout(() => {
-      passInput.focus();
-    }, 100);
-  });
+heartLock.addEventListener('click', (e) => {
+  e.stopPropagation();
+  playSound("clickSound");
+  passModal.classList.add('active');
+  setTimeout(() => {
+  passInput.focus();
+  }, 100);
+});
 
   // Password Verification
-  btnSubmitPass.addEventListener('click', checkPassword);
-  passInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') checkPassword();
-  });
+  btnSubmitPass.addEventListener('click', () => {
+  playSound("clickSound");
+  checkPassword();
+});
 
-  function checkPassword() {
-    const input = document.getElementById("passInput").value.trim();
-    
-    if (VALID_PASSWORDS.includes(input)) {
-      // Sembunyikan modal password
-      passModal.classList.remove('active');
-      
-      // Sembunyikan Screen 1 (Gate) dan Tampilkan Screen 2 (Garden)
-      screen1.classList.add('hidden');
-      screen2.classList.remove('hidden');
-    } else {
-      alert("Sandi salah! Coba tanggal jadian kita 😉");
-    }
+  
+function checkPassword() {
+  const input = passInput.value.trim();
+
+  if (VALID_PASSWORDS.includes(input)) {
+    // Musik dimulai saat sandi benar
+    const bgMusic = document.getElementById("bgMusic");
+
+    bgMusic.volume = 0.35;
+    bgMusic.currentTime = 0;
+
+    bgMusic.play().catch(error => {
+      console.log("Musik gagal diputar:", error);
+    });
+
+    // Sembunyikan modal password
+    passModal.classList.remove('active');
+
+    // Pindah dari gerbang ke halaman drag-and-drop
+    screen1.classList.add('hidden');
+    screen2.classList.remove('hidden');
+
+  } else {
+    playSound("clickSound");
+    alert("Sandi salah! Coba tanggal jadian kita 😉");
   }
+}
 
   function playSound(id) {
   const audio = document.getElementById(id);
@@ -1194,8 +1207,9 @@ let envelopeStage = 1;
 
 // Klik amplop kecil pada buket
 miniEnvelope.addEventListener('click', () => {
-  envelopeStage = 1;
+  playSound("clickSound");
 
+  envelopeStage = 1;
   envelopePopupImg.src = 'amplop_1.png';
   envelopePopupImg.alt = 'Amplop pertama';
 
@@ -1218,6 +1232,9 @@ miniEnvelope.addEventListener('click', () => {
 
 // Klik gambar amplop di tengah layar
 envelopePopupImg.addEventListener('click', () => {
+  playSound("clickSound");
+
+  // Kode tahap amplopmu lanjut seperti semula
 
   // Tahap 1: Amplop pertama menjadi amplop kedua
   if (envelopeStage === 1) {
