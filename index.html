@@ -501,16 +501,16 @@
       height: auto;
       filter: drop-shadow(0 15px 25px rgba(212, 140, 128, 0.3));
     }
-
-    /* Amplop Mini di Tengah Pita */
+    
+/* Amplop Mini di Tengah Pita */
 .mini-envelope {
   position: absolute;
   bottom: 75px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 130px;
-  height: 95px;
+  width: 180px;
+  height: 130px;
 
   background: transparent;
   box-shadow: none;
@@ -534,7 +534,7 @@
   height: 100%;
   object-fit: contain;
   display: block;
-    }
+}
 
     .mini-seal {
       width: 14px;
@@ -825,6 +825,21 @@
   }
 }
 
+    /* Hilangkan highlight biru saat disentuh */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hilangkan outline fokus pada elemen interaktif */
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+.mini-envelope:focus,
+.mini-envelope:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
   </style>
 </head>
 <body>
