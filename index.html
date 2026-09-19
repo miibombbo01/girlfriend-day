@@ -785,15 +785,17 @@
 
   function checkPassword() {
   const input = document.getElementById("passInput").value.trim();
-  const errorMsg = document.getElementById("errorMsg");
   
-  // Kata sandi baru: 20062026 atau variasi format 20062026
-  if (input === "20062026" || input === "20062026") {
-    document.getElementById("loginScreen").classList.add("hidden");
-    document.getElementById("mainContent").classList.remove("hidden");
-    startFloatingHearts();
+  // Memeriksa sandi baru: 20062026 atau format 6 digit 200626
+  if (input === "20062026" || input === "200626") {
+    // Sembunyikan modal password
+    passModal.classList.remove("active");
+    
+    // Sembunyikan Screen 1 (Gate) dan Tampilkan Screen 2 (Garden Game)
+    screen1.classList.add("hidden");
+    screen2.classList.remove("hidden");
   } else {
-    errorMsg.innerText = "Sandi salah! Coba tanggal jadian kita 😉";
+    alert("Sandi salah! Coba tanggal jadian kita 😉");
   }
 }
 
