@@ -502,35 +502,31 @@
       filter: drop-shadow(0 15px 25px rgba(212, 140, 128, 0.3));
     }
 
-    /* Amplop Mini di Pita */
-    .mini-envelope {
-      position: absolute;
-      bottom: 75px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 46px;
-      height: 30px;
-      background: #ffffff;
-      border-radius: 4px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      transition: transform 0.2s ease;
-    }
+    /* Amplop Mini di Tengah Pita */
+.mini-envelope {
+  position: absolute;
+  bottom: 75px;
+  left: 50%;
+  transform: translateX(-50%);
 
-    .mini-envelope:active {
-      transform: translateX(-50%) scale(0.95);
-    }
+  width: 90px;
+  height: 65px;
 
-    .mini-envelope {
-  width: 58px;
-  height: 44px;
   background: transparent;
   box-shadow: none;
   overflow: visible;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  transition: transform 0.2s ease;
+}
+
+.mini-envelope:active {
+  transform: translateX(-50%) scale(0.95);
 }
 
 .mini-envelope-img {
@@ -538,7 +534,7 @@
   height: 100%;
   object-fit: contain;
   display: block;
-}
+    }
 
     .mini-seal {
       width: 14px;
@@ -1016,6 +1012,16 @@
 </div>
 
 <script>
+  function playSound(id) {
+  const audio = document.getElementById(id);
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play().catch(error => {
+    console.log("Audio tidak dapat diputar:", error);
+  });
+  }
+  
   // CONFIGURATION
   const VALID_PASSWORDS = ["20062026"];
   let collectedCount = 0;
@@ -1065,6 +1071,14 @@
     } else {
       alert("Sandi salah! Coba tanggal jadian kita 😉");
     }
+  }
+
+  function playSound(id) {
+  const audio = document.getElementById(id);
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play().catch(() => {});
   }
 
   // DRAG AND DROP MECHANIC
@@ -1144,7 +1158,11 @@
           itemRect.top > targetRect.bottom)) {
       
       item.style.display = 'none';
-      collectedCount++;
+
+// Bunyi saat bunga berhasil masuk bouquet
+playSound("dropSound");
+
+collectedCount++;
       taskProgress.innerText = `Tarik ${collectedCount}/${TOTAL_REQUIRED} Bunga & Daun ke Buket`;
 
       if (collectedCount === 1) {
@@ -1249,5 +1267,10 @@ envelopePopupImg.addEventListener('click', () => {
     }
   }
 </script>
+
+  <!-- Audio -->
+<audio id="bgMusic" src="./backsound.mp3" loop></audio>
+<audio id="clickSound" src="./click.mp3"></audio>
+<audio id="dropSound" src="./drop.mp3"></audio>
 </body>
 </html>
